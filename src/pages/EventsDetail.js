@@ -2,12 +2,15 @@ import React from "react";
 import {
   CalendarDateFill,
   PeopleFill,
-  PinMapFill
+  PinMapFill,
 } from "react-bootstrap-icons";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import Documentation from "../components/EventDetails/Documentation";
 import Leaderboard from "../components/EventDetails/Leaderboard";
+import LeaderboardTable from "../components/Leaderboard/LeaderboardTable";
+import { eventSatu } from "../dummy-leaderboard";
+import LeaderboardList from "../components/Leaderboard/LeaderboardList";
 import { events } from "../dummy-event";
 
 export default function EventsDetail() {
@@ -20,14 +23,14 @@ export default function EventsDetail() {
           <img className="img-fluid" src={activeEvent.img} alt="some" />
         </div>
         <div className="col-6 text-start">
-          <h3>{activeEvent.judul}</h3>
-          <p>
+          <h2 style={{ fontWeight: 600 }}>{activeEvent.judul}</h2>
+          <p style={{ fontSize: "1.2rem" }}>
             <PinMapFill /> {activeEvent.tempat}
           </p>
-          <p>
+          <p style={{ fontSize: "1.2rem" }}>
             <CalendarDateFill /> {activeEvent.tanggal}
           </p>
-          <p>
+          <p style={{ fontSize: "1.2rem" }}>
             <PeopleFill /> {activeEvent.jumlah_partisipan} Orang
           </p>
         </div>
@@ -36,7 +39,17 @@ export default function EventsDetail() {
         <h2>Informasi Kegiatan</h2>
         <p>{activeEvent.info}</p>
       </div>
-      <Leaderboard />
+      <LeaderboardTable>
+        {eventSatu.slice(0, 5).map((o) => (
+          <LeaderboardList
+            key={o.id}
+            id={o.id}
+            img={o.photo}
+            name={o.name}
+            point={o.point}
+          />
+        ))}
+      </LeaderboardTable>
       <div className="my-5">
         <Link className="btn btn-primary" to={`/event/${id}/leaderboard`}>
           See More

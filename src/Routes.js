@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
-import SeeMoreLeaderboard from "./components/EventDetails/SeeMoreLeaderBoard";
+// import SeeMoreLeaderboard from "./components/EventDetails/SeeMoreLeaderBoard";
+import SeeMoreLeaderboard from "./pages/SeeMoreLeaderBoard";
 import SeeMoreDocumentation from "./components/EventDetails/SeeMoreDocumentation";
 import Blog from "./pages/Blog";
 import BlogDetail from "./pages/BlogDetail";
