@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import Select from "react-select";
 
-export default function ({}) {
-  const options = [
-    { label: "Super admin", value: 1 },
-    { label: "Admin", value: 2 },
-    { label: "Moderator", value: 3 },
-  ];
+export default function ({ level }) {
+  const options = level.map((o) => ({
+    label: o.name,
+    value: o.id,
+  }));
 
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [email, setEmail] = useState("");
