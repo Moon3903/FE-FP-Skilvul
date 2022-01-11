@@ -50,7 +50,7 @@ export default function (events) {
         data-bs-toggle="modal"
         data-bs-target="#modalEvent"
       >
-        Bootstrap Modal popup
+        Add Point
       </button>
 
       <div
