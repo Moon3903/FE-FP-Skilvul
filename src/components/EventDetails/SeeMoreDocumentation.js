@@ -1,5 +1,4 @@
 import { useParams } from "react-router";
-import "../../assets/css/documentation-style.css";
 import React, { useEffect, useState } from "react";
 import CardImageGallery from ".././CardImageGallery";
 import { GET_LIST_POST } from "../../services/JsonPlaceholderService";

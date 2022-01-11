@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import EventCard from "../components/Event/EventCard";
 import { events } from "../dummy-event";
 import MapContainer from "../components/MapContainer";
+import "../assets/css/style.css";
 import logo1 from "./../assets/img/mitra1.svg";
 import logo2 from "./../assets/img/mitra2.svg";
 import logo3 from "./../assets/img/mitra3.svg";
@@ -14,7 +15,7 @@ export default function Home() {
   return (
     <div className="container my-5 text-start">
       <div className="row">
-        <div className="col-md-6 my-3">
+        <div className="col-md-6 my-3 home-styles">
           <h1>
             Mari kelola sampah sisa makanan anda menjadi hal yang lebih
             bermanfaat kepada orang banyak
@@ -26,11 +27,11 @@ export default function Home() {
         <div className="col-md-6 my-3">
           <img
             className="img-fluid"
-            src="https://i.picsum.photos/id/1084/536/354.jpg?grayscale&hmac=Ux7nzg19e1q35mlUVZjhCLxqkR30cC-CarVg-nlIf60"
+            src="http://assets.kompasiana.com/items/album/2020/09/06/hidup-dan-perbuatan-capturehighered-com-5f5478c9d541df19580b22f2.jpg?t=o&v=770"
             alt="uy"
           ></img>
         </div>
-        <div className="col-md-6 my-3">
+        <div className="col-md-6 my-3 home-style">
           <h1>Bagaimana Selanjutnya?</h1>
           <p>
             Siti Nurbaya, selaku Menteri Lingkungan Hidup dan Kehutanan Republik
@@ -45,12 +46,12 @@ export default function Home() {
             daerah, maupun swasta yang belum ada di Permen sebelumnya.
           </p>
         </div>
-        <div className="col-md-6 my-3 maps">
+        <div className="col-md-6 my-3 maps home-style">
           <h1>Drop Point Sampah</h1>
           <MapContainer />
         </div>
       </div>
-      <div className="text-center">
+      <div className="text-center home-style">
         <h1>Kampenye Lingkungan Terdekat</h1>
         <div className="container">
           <div className="row">
@@ -71,7 +72,7 @@ export default function Home() {
           </Link>
         </div>
       </div>
-      <div className="text-center my-5">
+      <div className="text-center my-5 home-style">
         <h1>Mitra Kami</h1>
         <div className="container">
           <div className="row justify-content-center">
