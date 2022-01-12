@@ -13,12 +13,14 @@ import EventsDetail from "./pages/EventsDetail";
 import Home from "./pages/Home";
 import Leaderboard from "./pages/Leaderboard";
 import NotFound from "./pages/NotFound";
+import Homex from "./pages/Homex";
 
 export default function AppRoutes() {
   return (
     <Routes>
       <Route exact path="/" element={<Home />} />
       <Route exact path="/dashboard" element={<DashboardIndex />} />
+      <Route exact path="/homex" element={<Homex />} />
       <Route exact path="/dashboard/login" element={<DashboardLogin />} />
       <Route exact path="/dashboard/users" element={<DashboardUsers />} />
       <Route exact path="/dashboard/events" element={<DashboardEvents />} />
