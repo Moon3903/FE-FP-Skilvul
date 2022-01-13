@@ -14,6 +14,7 @@ import Home from "./pages/Home";
 import Leaderboard from "./pages/Leaderboard";
 import NotFound from "./pages/NotFound";
 import Homex from "./pages/Homex";
+import Tes from "./pages/Tes";
 
 export default function AppRoutes() {
   return (
@@ -39,6 +40,7 @@ export default function AppRoutes() {
         path="/event/:id/documentation"
         element={<SeeMoreDocumentation />}
       />
+      <Route exact path="/tes" element={<Tes />} />
       <Route path="/*" element={<NotFound />} />
     </Routes>
   );
