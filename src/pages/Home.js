@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import EventCard from "../components/Event/EventCard";
 import { events } from "../dummy-event";
 import MapContainer from "../components/MapContainer";
+import "../assets/css/style.css";
 import logo1 from "./../assets/img/mitra1.svg";
 import logo2 from "./../assets/img/mitra2.svg";
 import logo3 from "./../assets/img/mitra3.svg";
@@ -12,48 +13,36 @@ import logo6 from "./../assets/img/mitra6.svg";
 
 export default function Home() {
   return (
-    <div className="container my-5 text-start">
+    <div className="container my-5 text-start"> 
       <div className="row">
-        <div className="col-md-6 my-3">
+        <div className="col-md-6 my-3 home-styles" data-aos="fade-down" data-aos-duration="1000">
           <h1>
             Mari kelola sampah sisa makanan anda menjadi hal yang lebih
-            bermanfaat kepada orang banyak
+            bermanfaat kepada orang banyak  
           </h1>
           <Link className="btn btn-primary my-3" to="/blog/3">
             Pelajari Lebih Lanjut
           </Link>
         </div>
-        <div className="col-md-6 my-3">
+        <div className="col-md-6 my-3" data-aos="fade-down" data-aos-duration="2000">
           <img
             className="img-fluid"
-            src="https://i.picsum.photos/id/1084/536/354.jpg?grayscale&hmac=Ux7nzg19e1q35mlUVZjhCLxqkR30cC-CarVg-nlIf60"
+            src="http://assets.kompasiana.com/items/album/2020/09/06/hidup-dan-perbuatan-capturehighered-com-5f5478c9d541df19580b22f2.jpg?t=o&v=770"
             alt="uy"
           ></img>
         </div>
-        <div className="col-md-6 my-3">
-          <h1>Bagaimana Selanjutnya?</h1>
-          <p>
-            Siti Nurbaya, selaku Menteri Lingkungan Hidup dan Kehutanan Republik
-            Indonesia mencantumkan bahwa Peraturan Menteri no. 14 Tahun 2021
-            tentang Pengelolaan Sampah pada Bank Sampah pada 25 Juni 2021 adalah
-            untuk menyempurnakan Peraturan Menteri LHK No. 13 Tahun 2012
-            mengenai Pedoman Pelaksanaan Reduce, Reuse, dan Recycle Melalui Bank
-            Sampah. Permen no. 14 Tahun 2021 ini memasukkan fungsi bank sampah
-            sebagai media edukasi, perubahan perilaku, dan menekankan pada
-            implementasi circular economy. Pada permen ini juga disertakan skema
-            pendanaan untuk pemberdayaan Bank Sampah baik oleh pemerintah pusat,
-            daerah, maupun swasta yang belum ada di Permen sebelumnya.
+        <div className="container mx-auto text-center w-75 my-3 home-style">
+          <img src="https://images.unsplash.com/photo-1587132137056-bfbf0166836e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80" className="w-50" data-aos="fade-down" data-aos-duration="1000"/>
+          <h1 data-aos="fade-down" data-aos-duration="1000">Tahukah anda?</h1>
+          <p data-aos="fade-down" data-aos-duration="1000">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
           </p>
         </div>
-        <div className="col-md-6 my-3 maps">
-          <h1>Drop Point Sampah</h1>
-          <MapContainer />
-        </div>
       </div>
-      <div className="text-center">
-        <h1>Kampenye Lingkungan Terdekat</h1>
-        <div className="container">
-          <div className="row">
+      <div className="text-center home-style">
+        <h1 data-aos="fade-down" data-aos-duration="1000">Kampanye Lingkungan Terdekat</h1>
+        <div className="container" data-aos="fade-down" data-aos-duration="1000">
+          <div className="row" >
             {events.slice(3).map((e) => (
               <div className="col-md-4 my-3">
                 <EventCard
@@ -71,9 +60,9 @@ export default function Home() {
           </Link>
         </div>
       </div>
-      <div className="text-center my-5">
-        <h1>Mitra Kami</h1>
-        <div className="container">
+      <div className="text-center my-5 home-style">
+        <h1 data-aos="fade-down" data-aos-duration="1000">Mitra Kami</h1>
+        <div className="container" data-aos="fade-down" data-aos-duration="1000">
           <div className="row justify-content-center">
             <div className="col my-3">
               <img src={logo1} />
@@ -94,6 +83,12 @@ export default function Home() {
               <img src={logo6} />
             </div>
           </div>
+        </div>
+      </div>
+      <div>
+      <div className="my-3 maps home-style text-center" data-aos="fade-down" data-aos-duration="1000">
+          <h1 className="mb-5">Drop Point Sampah</h1>
+          <MapContainer />
         </div>
       </div>
     </div>
