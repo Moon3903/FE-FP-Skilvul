@@ -16,7 +16,7 @@ export default function LayooutBlog(props) {
 
   const getBlogs = async () => {
     const res = await axios.get("https://be-fp-4.herokuapp.com/blog");
-    setBlogs(res.data.result);
+    setBlogs((res.data.result || []).slice(0, 6));
     console.log("debug", res.data);
   };
 
@@ -45,7 +45,7 @@ export default function LayooutBlog(props) {
         </div>
         <div className="col-md-3 d-md-block d-none">
           <h3>Trending</h3>
-          {(blogs ?? []).map((e) => (
+          {(blogs ?? []).slice(0, 3).map((e) => (
             <TopBlogCard key={e.id} img={e.thumbnail} title={e.title} />
           ))}
         </div>
