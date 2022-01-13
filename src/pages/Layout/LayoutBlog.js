@@ -8,14 +8,14 @@ import { useState, useEffect } from "react";
 
 export default function LayooutBlog(props) {
   // console.log(dataBlog);
-  const [blogs, setBlogs, page] = useState([]);
+  const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
     getBlogs();
   }, []);
 
   const getBlogs = async () => {
-    const res = await axios.get("https://be-nawaste.herokuapp.com/blog");
+    const res = await axios.get("https://be-fp-4.herokuapp.com/blog");
     setBlogs(res.data.result);
     console.log("debug", res.data);
   };
@@ -33,8 +33,7 @@ export default function LayooutBlog(props) {
                     id={e.id}
                     img={e.thumbnail}
                     title={e.title}
-                    content={e.content}
-                    page={page}
+                    page={props.page}
                   />
                 </div>
               ))}

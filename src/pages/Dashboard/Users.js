@@ -11,12 +11,8 @@ export default function DashboardUsers() {
           <DashboardSidebar />
         </div>
         <div className="col-8">
-          <a
-            className="btn btn-success"
-            href="https://codepen.io/collection/XKgNLN/"
-            target="_blank"
-          >
-            Other examples on Codepen
+          <a className="btn btn-success" href="/" target="_blank">
+            Tambah Data
           </a>
           <table
             id="example"

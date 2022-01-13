@@ -1,4 +1,9 @@
-export default function () {
+export default function ({ postsPerPage, totalPosts, paginate }) {
+  const pageNumbers = [];
+
+  for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+    pageNumbers.push(i);
+  }
   return (
     <nav aria-label="event pagination">
       <ul className="pagination">

@@ -14,8 +14,8 @@ const MapContainer = ({ array, isAdding, getLocation }) => {
   const markerRef = useRef(null);
 
   const defaultCenter = {
-    lat: 41.3851,
-    lng: 2.1734
+    lat: -6.212050589306667,
+    lng: 106.8313710035839
   };
 
   const onSelect = (item) => {

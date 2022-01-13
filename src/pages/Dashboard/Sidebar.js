@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import "../../assets/css/style.css";
+import { BsCalendar4Event } from "react-icons/bs";
 
 export default function DashboardSidebar() {
   return (
@@ -45,12 +46,13 @@ export default function DashboardSidebar() {
           </li>
           <li>
             <a href="#">
-              <i className="fa fa-tachometer" aria-hidden="true"></i> Event
+              <i className="{BsCalendar4Event}" aria-hidden="true"></i> Event
             </a>
           </li>
           <li>
             <a href="#">
-              <i className="fa fa-tachometer" aria-hidden="true"></i> Users
+              <i className="bi bi-person-plus-fill" aria-hidden="true"></i>{" "}
+              Users
             </a>
           </li>
           <li>

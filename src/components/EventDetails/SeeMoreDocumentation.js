@@ -10,7 +10,7 @@ export default function SeeMoreDocumentation() {
     let mounted = true;
     GET_LIST_POST().then((items) => {
       if (mounted) {
-        setPost(items);
+        setPost(items.result);
       }
     });
     return () => (mounted = false);
@@ -24,7 +24,7 @@ export default function SeeMoreDocumentation() {
       </div>
       <div className="row g-3">
         {post.map((u) => (
-          <CardImageGallery />
+          <CardImageGallery key={u.id} id={u.id} img={u.documentation} x />
         ))}
       </div>
     </>
