@@ -2,6 +2,7 @@ import React, { useState,useEffect } from "react";
 // import Leaderboard from "react-leaderboard";
 import AddPoint from "../components/Form/AddPoint";
 import AddUser from "../components/Form/AddUser";
+import AddEvent from "../components/Form/AddEvent";
 // import { events } from "../dummy-event";
 import axios from "axios";
 
@@ -59,7 +60,7 @@ export default function Tes() {
   ];
   const paginate = 5;
 
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlzcyI6Im5hd2FzdGUiLCJpYXQiOjE2NDIwNjUxMDYuMjgxLCJleHAiOjE2NDIwNjg3MDYuMjgxfQ.KK6tr4V2vL8CMnt8ekfemHZ9g1pHjw453dJgnakwLKM";
+  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlzcyI6Im5hd2FzdGUiLCJpYXQiOjE2NDIwODM0NTcuMTgyLCJleHAiOjE2NDIwODcwNTcuMTgyfQ.bpxrPSaTlmCZm5fbHLDxtlQyq3m5WeOe62eKQR4XfKE";
 
   // console.log(tes);
 
@@ -77,7 +78,8 @@ export default function Tes() {
   return (
     <>
       <AddPoint key={0} events={events} participants={participants} token={token}/>
-      <AddUser key={0} token={token}/>
+      <AddUser key={1} token={token}/>
+      <AddEvent key={2} token={token}/>
       <div className="string">
         {/* <Leaderboard users={users} paginate={paginate} /> */}
       </div>

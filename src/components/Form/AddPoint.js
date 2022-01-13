@@ -79,14 +79,14 @@ export default function ({events, participants, token}) {
         type="button"
         className="btn btn-primary mx-auto d-block mt-5"
         data-bs-toggle="modal"
-        data-bs-target="#modalEvent"
+        data-bs-target="#modalPoint"
       >
         Add Point
       </button>
 
       <div
         className="modal fade"
-        id="modalEvent"
+        id="modalPoint"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
