@@ -200,7 +200,7 @@ header {
   font-weight: bold;
 }
 .sidebar-container {
-  position: fixed;
+  /* position: fixed; */
   width: 220px;
   height: 100%;
   left: 0;
