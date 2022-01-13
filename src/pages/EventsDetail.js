@@ -35,12 +35,12 @@ export default function EventsDetail() {
           <img className="img-fluid" src={aktifEvent.thumbnail} alt="some" />
         </div>
         <div className="col-6 text-start">
-          <h2 style={{ fontWeight: 600 }}>{aktifEvent.judul}</h2>
+          <h2 style={{ fontWeight: 600 }}>{aktifEvent.name}</h2>
           <p style={{ fontSize: "1.2rem" }}>
-            <PinMapFill /> {aktifEvent.tempat}
+            <PinMapFill /> {aktifEvent.location}
           </p>
           <p style={{ fontSize: "1.2rem" }}>
-            <CalendarDateFill /> {aktifEvent.tanggal}
+            <CalendarDateFill /> {aktifEvent.date}
           </p>
           <p style={{ fontSize: "1.2rem" }}>
             <PeopleFill /> {aktifEvent.jumlah_partisipan} Orang
