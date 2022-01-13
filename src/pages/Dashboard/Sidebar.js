@@ -40,17 +40,17 @@ export default function DashboardSidebar() {
         <ul className="sidebar-navigation">
           <li className="header">Dashboard</li>
           <li>
-            <a href="#">
+            <a href="/">
               <i className="fa fa-home" aria-hidden="true"></i> Homepage
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="/dashboard/events">
               <i className="{BsCalendar4Event}" aria-hidden="true"></i> Event
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="/dashboard/users">
               <i className="bi bi-person-plus-fill" aria-hidden="true"></i>{" "}
               Users
             </a>

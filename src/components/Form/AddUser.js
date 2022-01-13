@@ -4,7 +4,7 @@ import Select from "react-select";
 export default function ({ level }) {
   const options = level.map((o) => ({
     label: o.name,
-    value: o.id,
+    value: o.id
   }));
 
   const [selectedOptions, setSelectedOptions] = useState([]);
@@ -34,7 +34,9 @@ export default function ({ level }) {
       return false;
     }
     if (
-      !password.match(/^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)
+      !password.match(
+        /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/
+      )
     ) {
       alert(
         'password must be 6-16 character long and contain number, letter, and one of these special character "!@#$%^&*"'
