@@ -21,7 +21,10 @@ export default function Tes() {
   };
 
   const getParticipants = async () => {
-    const res = await axios.get("https://be-fp-4.herokuapp.com/events");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    const res = await axios.get("https://be-fp-4.herokuapp.com/participants",config);
     setParticipants(res.data.result);
     console.log("debug", res.data);
   };
@@ -73,7 +76,7 @@ export default function Tes() {
 
   return (
     <>
-      <AddPoint key={0} events={events}/>
+      <AddPoint key={0} events={events} participants={participants} token={token}/>
       <AddUser key={0} token={token}/>
       <div className="string">
         {/* <Leaderboard users={users} paginate={paginate} /> */}

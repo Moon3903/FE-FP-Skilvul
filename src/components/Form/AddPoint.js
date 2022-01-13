@@ -1,15 +1,23 @@
 import React, { useState } from "react";
 import Select from "react-select";
 // import { events } from "../../dummy-event";
+import axios from "axios";
 
 // pass list event butuh id dan nama
-export default function (events) {
+export default function ({events, participants, token}) {
+  
   const options = events.map((o) => ({
     label: o.name,
     value: o.id,
   }));
 
+  const participantOption = participants.map((o) => ({
+    label: o.email,
+    value: o.id,
+  }));
+
   const [selectedOptions, setSelectedOptions] = useState([]);
+  const [selectedParticipant, setSelectedParticipant] = useState([]);
   const [weight, setWeight] = useState("");
   const [point, setPoint] = useState("");
 
@@ -17,11 +25,32 @@ export default function (events) {
     setSelectedOptions(options);
   };
 
-  //^[0-9]*$
+  const handleParticipantChange = (options) => {
+    setSelectedParticipant(options);
+  };
+
+  async function postAddParticipant(){
+    
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+
+    const result = await axios.post(
+      `https://be-fp-4.herokuapp.com/participants/${selectedParticipant.value}/point`,
+      {
+        eventId: selectedOptions.value,
+        weight: weight,
+        point: point,
+      },
+      config
+    );
+    alert(result.data.message);
+    console.log(result);
+  }
 
   function handleValidation() {
     console.log("masok");
-    if (selectedOptions.length == 0 || !weight || !point) {
+    if (selectedOptions.length == 0 || !weight || !point || selectedParticipant.length == 0) {
       return false;
     }
     if (!weight.match("^[0-9]*$") || !point.match("^[0-9]*$")) {
@@ -38,6 +67,8 @@ export default function (events) {
       console.log(selectedOptions);
       console.log(weight);
       console.log(point);
+      console.log(selectedParticipant);
+      postAddParticipant();
     }
     e.preventDefault();
   };
@@ -98,6 +129,10 @@ export default function (events) {
                 <div className="mb-3">
                   <label className="form-label">Select event</label>
                   <Select options={options} onChange={handleChange} />
+                </div>
+                <div className="mb-3">
+                  <label className="form-label">Select participant</label>
+                  <Select options={participantOption} onChange={handleParticipantChange} />
                 </div>
                 <div className="modal-footer d-block">
                   <button type="submit" className="btn btn-primary float-end">
