@@ -5,6 +5,7 @@ import AddUser from "../components/Form/AddUser";
 import AddEvent from "../components/Form/AddEvent";
 import AddDocumentation from "../components/Form/AddDocumentation";
 import AddParticipant from "../components/Form/AddParticipant";
+import AddBlog from "../components/Form/AddBlog";
 // import { events } from "../dummy-event";
 import axios from "axios";
 
@@ -84,6 +85,7 @@ export default function Tes() {
       <AddEvent key={2} token={token}/>
       <AddDocumentation key={3} events={events} token={token}/>
       <AddParticipant key={4} token={token}/>
+      <AddBlog key={4} token={token}/>
       <div className="string">
         {/* <Leaderboard users={users} paginate={paginate} /> */}
       </div>
