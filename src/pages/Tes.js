@@ -1,10 +1,33 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 // import Leaderboard from "react-leaderboard";
 import AddPoint from "../components/Form/AddPoint";
 import AddUser from "../components/Form/AddUser";
-import { events } from "../dummy-event";
+// import { events } from "../dummy-event";
+import axios from "axios";
 
 export default function Tes() {
+  const [events, setEvents] = useState([]);
+  const [participants, setParticipants] = useState([]);
+
+  useEffect(() => {
+    getEvents();
+    getParticipants();
+  }, []);
+
+  const getEvents = async () => {
+    const res = await axios.get("https://be-fp-4.herokuapp.com/events");
+    setEvents(res.data.result);
+    console.log("debug", res.data);
+  };
+
+  const getParticipants = async () => {
+    const res = await axios.get("https://be-fp-4.herokuapp.com/events");
+    setParticipants(res.data.result);
+    console.log("debug", res.data);
+  };
+
+  
+
   const options = [
     { label: "Hari ibu", value: "1" },
     { label: "valentine", value: "2" },
