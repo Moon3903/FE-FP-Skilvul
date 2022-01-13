@@ -1,8 +1,9 @@
 import React from "react";
 import { Share } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
+import "../../assets/css/style.css";
 
-export default function ({ id, img, title, page, content }) {
+export default function ({ id, img, title, page }) {
   return (
     <div className="card shadow-sm">
       <img src={img} className="card-img-top" alt="test" />

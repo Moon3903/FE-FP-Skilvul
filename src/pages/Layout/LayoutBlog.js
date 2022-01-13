@@ -8,15 +8,15 @@ import { useState, useEffect } from "react";
 
 export default function LayooutBlog(props) {
   // console.log(dataBlog);
-  const [blogs, setBlogs, page] = useState([]);
+  const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
     getBlogs();
   }, []);
 
   const getBlogs = async () => {
-    const res = await axios.get("https://be-nawaste.herokuapp.com/blog");
-    setBlogs(res.data.result);
+    const res = await axios.get("https://be-fp-4.herokuapp.com/blog");
+    setBlogs((res.data.result || []).slice(0, 6));
     console.log("debug", res.data);
   };
 
@@ -33,8 +33,7 @@ export default function LayooutBlog(props) {
                     id={e.id}
                     img={e.thumbnail}
                     title={e.title}
-                    content={e.content}
-                    page={page}
+                    page={props.page}
                   />
                 </div>
               ))}
@@ -46,7 +45,7 @@ export default function LayooutBlog(props) {
         </div>
         <div className="col-md-3 d-md-block d-none">
           <h3>Trending</h3>
-          {(blogs ?? []).map((e) => (
+          {(blogs ?? []).slice(0, 3).map((e) => (
             <TopBlogCard key={e.id} img={e.thumbnail} title={e.title} />
           ))}
         </div>

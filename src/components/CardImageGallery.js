@@ -1,14 +1,10 @@
 import React from "react";
 
-export default function CardImageGallery() {
+export default function CardImageGallery({ img }) {
   return (
     <div className="col-3">
-      <div class="card">
-        <img
-          class="card-img-top"
-          src="https://via.placeholder.com/600x400"
-          alt=""
-        />
+      <div className="card">
+        <img src={img} className="card-img-top" alt="test" />
       </div>
     </div>
   );
