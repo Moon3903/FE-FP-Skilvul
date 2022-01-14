@@ -27,10 +27,11 @@ export default function Leaderboard() {
         <p>The leaderboard is updated every day</p>
       </div>
       <LeaderboardTable key={1} list={allLeaderboard}>
-        {(leaderboard ?? []).map((o) => (
+        {(leaderboard ?? []).map((o, index) => (
           <LeaderboardList
             key={o.id}
             id={o.id}
+            index={index}
             img={o.picture}
             name={o.name}
             point={o.point}

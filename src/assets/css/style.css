@@ -200,7 +200,7 @@ header {
   font-weight: bold;
 }
 .sidebar-container {
-  /* position: fixed; */
+  position: absolute;
   width: 220px;
   height: 100%;
   left: 0;
@@ -282,9 +282,6 @@ header {
 
 .content-container {
   padding-left: 220px;
-}
-body {
-  margin: 2em;
 }
 td:last-child {
   text-align: center;

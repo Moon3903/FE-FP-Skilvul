@@ -12,7 +12,7 @@ import {
 export default function Footer() {
   return (
     <footer className="bg-white text-center text-white">
-      <div className="container pb-0">
+      <div className="container p-4 pb-0">
         <section className="mb-4">
           <a
             className="btn btn-outline-dark btn-floating m-1 hover-dark"

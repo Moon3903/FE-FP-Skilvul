@@ -1,76 +1,143 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import DashboardSidebar from "./Sidebar";
-import "../../assets/css/style.css";
+import Cookies from "js-cookie";
 import axios from "axios";
+import moment from "moment";
+import AddEvent from "../../components/Form/AddEvent";
 
 export default function DashboardEvents() {
-    const [dataEvent, setDataEvent] = useState([]);
-    const [isLoaded, setIsLoaded] = useState(false);
+  const navigate = useNavigate();
+  const [data, setData] = useState([]);
 
-    const loadDataEvent = async () => {
-      const res = await axios.get("https://jsonplaceholder.typicode.com/posts");
-      if (res.status === 200) {
-        // console.log(res.data);
-        setDataEvent(res.data);
-        setIsLoaded(true);
+  const getAllEventDashboard = async () => {
+    try {
+      const token = Cookies.get("access_token");
+
+      if (token) {
+        const result = await axios.get("https://be-fp-4.herokuapp.com/events", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (result.data.message === "success get data event") {
+          setData(result.data.result);
+        }
       } else {
-        console.log("error");
+        navigate("/dashboard/login");
       }
-    };
+    } catch (err) {
+      console.log(err.response.data);
+    }
+  };
 
-    useEffect(() => {
-      loadDataEvent();
-    }, [isLoaded]);
+  useEffect(() => {
+    getAllEventDashboard();
+  }, []);
 
+  const handleDelete = async (id) => {
+    try {
+      const token = Cookies.get("access_token");
+      const result = await axios.delete(`https://be-fp-4.herokuapp.com/events/${id}`, { headers: { Authorization: `Bearer ${token}` } });
+      if (result.data.message === 'success delete event') {
+        navigate(0);
+      }
+
+    } catch(err) {
+      console.log(err);
+    }
+  }
+
+  const handleEdit = async (id) => {
+    console.log("tes")
+    navigate(`/dashboard/editEvent/${id}`);
+  }
 
   return (
     <div className="container">
       <div className="row">
-        <div className="col-auto">
+        <div className="col-4">
           <DashboardSidebar />
         </div>
         <div className="col-8">
-        <a
-            className="btn btn-success mt-5"
-            href="https://codepen.io/collection/XKgNLN/"
-            target="_blank"
+          <AddEvent />
+          <table
+            id="example"
+            className="table table-striped table-bordered"
+            cellSpacing="0"
+            width="100%"
           >
-            Tambah Event
-          </a>
-          {isLoaded !== true ? (
-            <h1>Loading mas</h1>
-          ) : (
-            <table class="table mt-3">
             <thead>
               <tr>
-                <th scope="col" className="text-center">No</th>
-                <th scope="col" className="text-start">Nama Event</th>
-                <th scope="col" className="text-start">Tanggal</th>
-                <th scope="col" className="text-start">Detail</th>
-                <th scope="col" className="text-center">Action</th>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Location</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
-            {dataEvent.map((data, index) => {
-                    if (index >= 0 && index < 10) {
-                      return (
-                        <tr key={index}>
-                          <td style={{ textAlign: "center" }}>{index + 1}</td>
-                          <td>{data.title}</td>
-                          <td>{data.body}</td>
-                          <td>{data.body}</td>
-                          <td>
-                            <a href="" className="btn btn-sm bg-primary me-1"><i class="bi bi-pencil-square text-white"> edit</i></a>
-                            <a href="" className="btn btn-sm bg-danger"><i class="bi bi-trash text-white"> hapus</i></a>
-                          </td>
-                        </tr>
-                      );
-                    }
-                  })}
+              {data &&
+                data.map((val) => {
+                  return (
+                    <tr key={val.id}>
+                      <td>{val.name}</td>
+                      <td>
+                        {moment(val.date)
+                          .utc()
+                          .utcOffset("+07:00")
+                          .format("YYYY-MM-DD HH:mm:ss")}
+                      </td>
+                      <td>{val.location}</td>
+                      <td>
+                        <button
+                          type="button"
+                          className="btn btn-primary btn-xs dt-edit"
+                          onClick={() => handleEdit(val.id)}
+                        >
+                          <span
+                            className="glyphicon glyphicon-pencil"
+                            aria-hidden="true"
+                          ></span>
+                          edit
+                        </button>
+                        <button
+                          type="button"
+                          className="btn btn-danger btn-xs dt-delete"
+                          onClick={() => handleDelete(val.id)}
+                        >
+                          <span
+                            className="glyphicon glyphicon-remove"
+                            aria-hidden="true"
+                          ></span>
+                          delete
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
             </tbody>
           </table>
-          )}
+
+          <div id="myModal" className="modal fade" role="dialog">
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <button type="button" className="close" data-dismiss="modal">
+                    &times;
+                  </button>
+                  <h4 className="modal-title">Row information</h4>
+                </div>
+                <div className="modal-body"></div>
+                <div className="modal-footer">
+                  <button
+                    type="button"
+                    className="btn btn-default"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

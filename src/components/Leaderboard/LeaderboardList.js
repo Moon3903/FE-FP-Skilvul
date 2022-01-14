@@ -3,20 +3,20 @@ import medalEmas from "./../../assets/img/medal.svg";
 import medalPerak from "./../../assets/img/medal1.svg";
 import medalPerunggu from "./../../assets/img/medal2.svg";
 
-export default function ({ id, img, name, point }) {
+export default function ({ id,index, img, name, point }) {
   function medal(curr) {
-    if (curr === 1) {
+    if (curr === 0) {
       return <img src={medalEmas} />;
-    } else if (curr === 2) {
+    } else if (curr === 1) {
       return <img src={medalPerak} />;
-    } else if (curr === 3) {
+    } else if (curr === 2) {
       return <img src={medalPerunggu} />;
     } else return curr;
   }
 
   return (
     <tr>
-      <th scope="row">{medal(id)}</th>
+      <th scope="row">{medal(index)}</th>
       <td>
         <img src={img} style={{ height: "2rem" }} />
       </td>
