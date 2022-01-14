@@ -2,7 +2,6 @@ export const events = [
   {
     id: 1,
     judul: "Event 1",
-    name: "Event 1",
     tempat: "Jakarta",
     tanggal: "12 Januari 2022",
     jumlah_partisipan: 123,
@@ -14,7 +13,6 @@ export const events = [
   {
     id: 2,
     judul: "Event 2",
-    name: "Event 2",
     tempat: "Jakarta",
     tanggal: "12 Januari 2022",
     jumlah_partisipan: 123,
@@ -26,7 +24,6 @@ export const events = [
   {
     id: 3,
     judul: "Event 3",
-    name: "Event 3",
     tempat: "Jakarta",
     tanggal: "12 Januari 2022",
     jumlah_partisipan: 123,
@@ -38,7 +35,6 @@ export const events = [
   {
     id: 4,
     judul: "Event 4",
-    name: "Event 4",
     tempat: "Jakarta",
     tanggal: "12 Januari 2022",
     jumlah_partisipan: 123,
@@ -50,7 +46,6 @@ export const events = [
   {
     id: 5,
     judul: "Event 5",
-    name: "Event 5",
     tempat: "Jakarta",
     tanggal: "12 Januari 2022",
     jumlah_partisipan: 123,
@@ -62,7 +57,6 @@ export const events = [
   {
     id: 6,
     judul: "Event 6",
-    name: "Event 6",
     tempat: "Kebun Raya",
     tanggal: "12 Januari 2022",
     jumlah_partisipan: 123,

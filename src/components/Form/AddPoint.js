@@ -1,23 +1,15 @@
 import React, { useState } from "react";
 import Select from "react-select";
 // import { events } from "../../dummy-event";
-import axios from "axios";
 
 // pass list event butuh id dan nama
-export default function ({events, participants, token}) {
-  
+export default function (events) {
   const options = events.map((o) => ({
     label: o.name,
     value: o.id,
   }));
 
-  const participantOption = participants.map((o) => ({
-    label: o.email,
-    value: o.id,
-  }));
-
   const [selectedOptions, setSelectedOptions] = useState([]);
-  const [selectedParticipant, setSelectedParticipant] = useState([]);
   const [weight, setWeight] = useState("");
   const [point, setPoint] = useState("");
 
@@ -25,32 +17,11 @@ export default function ({events, participants, token}) {
     setSelectedOptions(options);
   };
 
-  const handleParticipantChange = (options) => {
-    setSelectedParticipant(options);
-  };
-
-  async function postAddParticipant(){
-    
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
-
-    const result = await axios.post(
-      `https://be-fp-4.herokuapp.com/participants/${selectedParticipant.value}/point`,
-      {
-        eventId: selectedOptions.value,
-        weight: weight,
-        point: point,
-      },
-      config
-    );
-    alert(result.data.message);
-    console.log(result);
-  }
+  //^[0-9]*$
 
   function handleValidation() {
     console.log("masok");
-    if (selectedOptions.length == 0 || !weight || !point || selectedParticipant.length == 0) {
+    if (selectedOptions.length == 0 || !weight || !point) {
       return false;
     }
     if (!weight.match("^[0-9]*$") || !point.match("^[0-9]*$")) {
@@ -67,8 +38,6 @@ export default function ({events, participants, token}) {
       console.log(selectedOptions);
       console.log(weight);
       console.log(point);
-      console.log(selectedParticipant);
-      postAddParticipant();
     }
     e.preventDefault();
   };
@@ -79,14 +48,14 @@ export default function ({events, participants, token}) {
         type="button"
         className="btn btn-primary mx-auto d-block mt-5"
         data-bs-toggle="modal"
-        data-bs-target="#modalPoint"
+        data-bs-target="#modalEvent"
       >
         Add Point
       </button>
 
       <div
         className="modal fade"
-        id="modalPoint"
+        id="modalEvent"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -129,10 +98,6 @@ export default function ({events, participants, token}) {
                 <div className="mb-3">
                   <label className="form-label">Select event</label>
                   <Select options={options} onChange={handleChange} />
-                </div>
-                <div className="mb-3">
-                  <label className="form-label">Select participant</label>
-                  <Select options={participantOption} onChange={handleParticipantChange} />
                 </div>
                 <div className="modal-footer d-block">
                   <button type="submit" className="btn btn-primary float-end">

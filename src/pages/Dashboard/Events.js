@@ -30,6 +30,10 @@ export default function DashboardEvents() {
   };
 
   useEffect(() => {
+    const token = Cookies.get('access_token');
+    if (!token) {
+      navigate('/dashboard/login')
+    }
     getAllEventDashboard();
   }, []);
 

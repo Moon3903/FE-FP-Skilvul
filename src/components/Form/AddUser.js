@@ -1,26 +1,14 @@
 import React, { useState } from "react";
 import Select from "react-select";
-import axios from "axios";
 
-export default function ({ token }) {
-  const options = [
-    {
-      value: 1,
-      label: "Super  admin",
-    },
-    {
-      value: 2,
-      label: "Admin",
-    },
-    {
-      value: 3,
-      label: "Moderator",
-    },
-  ];
+export default function ({ level }) {
+  const options = level.map((o) => ({
+    label: o.name,
+    value: o.id
+  }));
 
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
   const handleChange = (options) => {
@@ -31,7 +19,7 @@ export default function ({ token }) {
 
   function handleValidation() {
     console.log("masok");
-    if (selectedOptions.length == 0 || !email || !password || !name) {
+    if (selectedOptions.length == 0 || !email || !password) {
       alert("please fill all form");
       return false;
     }
@@ -58,25 +46,6 @@ export default function ({ token }) {
     return true;
   }
 
-  async function postAddUser() {
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
-
-    const result = await axios.post(
-      "https://be-fp-4.herokuapp.com/users",
-      {
-        email: email,
-        name: name,
-        password: password,
-        roles: [selectedOptions.value],
-      },
-      config
-    );
-    alert(result.data.message);
-    console.log(result);
-  }
-
   const handleSubmit = (e) => {
     if (!handleValidation()) {
     } else {
@@ -84,9 +53,7 @@ export default function ({ token }) {
       console.log(selectedOptions);
       console.log(email);
       console.log(password);
-      postAddUser();
     }
-    
     e.preventDefault();
   };
 
@@ -131,16 +98,6 @@ export default function ({ token }) {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Email"
-                  />
-                </div>
-                <div className="mb-3">
-                  <label className="form-label">Name</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Name"
                   />
                 </div>
                 <div className="mb-3">
