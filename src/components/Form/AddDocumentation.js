@@ -4,43 +4,28 @@ import Select from "react-select";
 import axios from "axios";
 
 // pass list event butuh id dan nama
-export default function ({events, participants, token}) {
-  
+export default function ({ events,token }) {
   const options = events.map((o) => ({
     label: o.name,
     value: o.id,
   }));
 
-  const participantOption = participants.map((o) => ({
-    label: o.email,
-    value: o.id,
-  }));
-
   const [selectedOptions, setSelectedOptions] = useState([]);
-  const [selectedParticipant, setSelectedParticipant] = useState([]);
-  const [weight, setWeight] = useState("");
-  const [point, setPoint] = useState("");
+  const [documentation, setDocumentation] = useState("");
 
   const handleChange = (options) => {
     setSelectedOptions(options);
   };
 
-  const handleParticipantChange = (options) => {
-    setSelectedParticipant(options);
-  };
-
-  async function postAddParticipant(){
-    
+  async function postAddDocumentation() {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
 
     const result = await axios.post(
-      `https://be-fp-4.herokuapp.com/participants/${selectedParticipant.value}/point`,
+      `https://be-fp-4.herokuapp.com/events/${selectedOptions.value}/documentation`,
       {
-        eventId: selectedOptions.value,
-        weight: weight,
-        point: point,
+        documentation: documentation,
       },
       config
     );
@@ -50,10 +35,8 @@ export default function ({events, participants, token}) {
 
   function handleValidation() {
     console.log("masok");
-    if (selectedOptions.length == 0 || !weight || !point || selectedParticipant.length == 0) {
-      return false;
-    }
-    if (!weight.match("^[0-9]*$") || !point.match("^[0-9]*$")) {
+    if (selectedOptions.length == 0 || !documentation) {
+      alert("please fill all form");
       return false;
     }
     return true;
@@ -61,14 +44,11 @@ export default function ({events, participants, token}) {
 
   const handleSubmit = (e) => {
     if (!handleValidation()) {
-      alert("isian form salah");
     } else {
       console.log("submitted");
       console.log(selectedOptions);
-      console.log(weight);
-      console.log(point);
-      console.log(selectedParticipant);
-      postAddParticipant();
+      console.log(documentation);
+      postAddDocumentation();
     }
     e.preventDefault();
   };
@@ -79,14 +59,14 @@ export default function ({events, participants, token}) {
         type="button"
         className="btn btn-primary mx-auto d-block mt-5"
         data-bs-toggle="modal"
-        data-bs-target="#modalPoint"
+        data-bs-target="#modalDocumentation"
       >
-        Add Point
+        Add Documentation
       </button>
 
       <div
         className="modal fade"
-        id="modalPoint"
+        id="modalDocumentation"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -95,7 +75,7 @@ export default function ({events, participants, token}) {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">
-                Add point
+                Add Documentation
               </h5>
               <button
                 type="button"
@@ -107,33 +87,21 @@ export default function ({events, participants, token}) {
             <div className="modal-body">
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
-                  <label className="form-label">Weight</label>
+                  <label className="form-label">documentation</label>
                   <input
                     type="text"
                     className="form-control"
-                    value={weight}
-                    onChange={(e) => setWeight(e.target.value)}
-                    placeholder="Weight"
+                    value={documentation}
+                    onChange={(e) => setDocumentation(e.target.value)}
+                    placeholder="Documentation"
                   />
                 </div>
-                <div className="mb-3">
-                  <label className="form-label">Point</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    value={point}
-                    onChange={(e) => setPoint(e.target.value)}
-                    placeholder="Point"
-                  />
-                </div>
+
                 <div className="mb-3">
                   <label className="form-label">Select event</label>
                   <Select options={options} onChange={handleChange} />
                 </div>
-                <div className="mb-3">
-                  <label className="form-label">Select participant</label>
-                  <Select options={participantOption} onChange={handleParticipantChange} />
-                </div>
+
                 <div className="modal-footer d-block">
                   <button type="submit" className="btn btn-primary float-end">
                     Submit

@@ -1,46 +1,25 @@
 import React, { useState } from "react";
 import Select from "react-select";
-// import { events } from "../../dummy-event";
 import axios from "axios";
 
-// pass list event butuh id dan nama
-export default function ({events, participants, token}) {
-  
-  const options = events.map((o) => ({
-    label: o.name,
-    value: o.id,
-  }));
+export default function ({ token }) {
+  const [title, setTitle] = useState("");
+  const [thumbnail, setThumbnail] = useState("");
+  const [content, setContent] = useState("");
+  const [description, setDescription] = useState("");
 
-  const participantOption = participants.map((o) => ({
-    label: o.email,
-    value: o.id,
-  }));
-
-  const [selectedOptions, setSelectedOptions] = useState([]);
-  const [selectedParticipant, setSelectedParticipant] = useState([]);
-  const [weight, setWeight] = useState("");
-  const [point, setPoint] = useState("");
-
-  const handleChange = (options) => {
-    setSelectedOptions(options);
-  };
-
-  const handleParticipantChange = (options) => {
-    setSelectedParticipant(options);
-  };
-
-  async function postAddParticipant(){
-    
+  async function postAddBlog() {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
 
     const result = await axios.post(
-      `https://be-fp-4.herokuapp.com/participants/${selectedParticipant.value}/point`,
+      "https://be-fp-4.herokuapp.com/blog",
       {
-        eventId: selectedOptions.value,
-        weight: weight,
-        point: point,
+        title: title,
+        thumbnail: thumbnail,
+        content: content,
+        description: description,
       },
       config
     );
@@ -50,25 +29,22 @@ export default function ({events, participants, token}) {
 
   function handleValidation() {
     console.log("masok");
-    if (selectedOptions.length == 0 || !weight || !point || selectedParticipant.length == 0) {
+    if (!title || !thumbnail || !content || !description) {
+      alert("please fill all form");
       return false;
     }
-    if (!weight.match("^[0-9]*$") || !point.match("^[0-9]*$")) {
-      return false;
-    }
+    postAddBlog();
     return true;
   }
 
   const handleSubmit = (e) => {
     if (!handleValidation()) {
-      alert("isian form salah");
     } else {
       console.log("submitted");
-      console.log(selectedOptions);
-      console.log(weight);
-      console.log(point);
-      console.log(selectedParticipant);
-      postAddParticipant();
+      console.log(title);
+      console.log(thumbnail);
+      console.log(content);
+      console.log(description);
     }
     e.preventDefault();
   };
@@ -79,14 +55,14 @@ export default function ({events, participants, token}) {
         type="button"
         className="btn btn-primary mx-auto d-block mt-5"
         data-bs-toggle="modal"
-        data-bs-target="#modalPoint"
+        data-bs-target="#modalBlog"
       >
-        Add Point
+        Add Blog
       </button>
 
       <div
         className="modal fade"
-        id="modalPoint"
+        id="modalBlog"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -95,7 +71,7 @@ export default function ({events, participants, token}) {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">
-                Add point
+                Add Blog
               </h5>
               <button
                 type="button"
@@ -107,33 +83,49 @@ export default function ({events, participants, token}) {
             <div className="modal-body">
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
-                  <label className="form-label">Weight</label>
+                  <label className="form-label">Blog title</label>
                   <input
                     type="text"
                     className="form-control"
-                    value={weight}
-                    onChange={(e) => setWeight(e.target.value)}
-                    placeholder="Weight"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    placeholder="Title"
                   />
                 </div>
+
                 <div className="mb-3">
-                  <label className="form-label">Point</label>
+                  <label className="form-label">Thumbnail</label>
                   <input
                     type="text"
                     className="form-control"
-                    value={point}
-                    onChange={(e) => setPoint(e.target.value)}
-                    placeholder="Point"
+                    value={thumbnail}
+                    onChange={(e) => setThumbnail(e.target.value)}
+                    placeholder="Thumbnail"
                   />
                 </div>
+
                 <div className="mb-3">
-                  <label className="form-label">Select event</label>
-                  <Select options={options} onChange={handleChange} />
+                  <label className="form-label">content</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
+                    placeholder="Content"
+                  />
                 </div>
+
                 <div className="mb-3">
-                  <label className="form-label">Select participant</label>
-                  <Select options={participantOption} onChange={handleParticipantChange} />
+                  <label className="form-label">Description</label>
+                  <textarea
+                    type="text"
+                    className="form-control"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    placeholder="Description"
+                  />
                 </div>
+
                 <div className="modal-footer d-block">
                   <button type="submit" className="btn btn-primary float-end">
                     Submit
