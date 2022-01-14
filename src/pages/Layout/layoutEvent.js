@@ -16,7 +16,7 @@ export default function LayoutEvents(props) {
 
   const getEvents = async () => {
     const res = await axios.get("https://be-fp-4.herokuapp.com/events");
-    setEvents(res.data.result);
+    setEvents(res.data.result.slice(0,6));
     console.log("debug", res.data);
   };
 
@@ -46,7 +46,7 @@ export default function LayoutEvents(props) {
         </div>
         <div className="col-md-3 d-md-block d-none">
           <h3>Trending</h3>
-          {(events ?? []).map((e) => (
+          {(events ?? []).slice(0,3).map((e) => (
             <TopEventCard key={e.id} img={e.thumbnail} title={e.name} />
           ))}
         </div>

@@ -3,12 +3,13 @@ import React, { useEffect, useState } from "react";
 import CardImageGallery from ".././CardImageGallery";
 import { GET_LIST_POST } from "../../services/JsonPlaceholderService";
 
+
 export default function SeeMoreDocumentation() {
   const [post, setPost] = useState([]);
-
+  const { id } = useParams();
   useEffect(() => {
     let mounted = true;
-    GET_LIST_POST().then((items) => {
+    GET_LIST_POST(id).then((items) => {
       if (mounted) {
         setPost(items.result);
       }
@@ -16,7 +17,6 @@ export default function SeeMoreDocumentation() {
     return () => (mounted = false);
   }, []);
 
-  const { id } = useParams();
   return (
     <>
       <div className="jumbotron">

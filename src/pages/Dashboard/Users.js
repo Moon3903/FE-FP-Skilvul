@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import DashboardSidebar from "./Sidebar";
 import "../../assets/css/style.css";
+import AddUser from "../../components/Form/AddUser";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function DashboardUsers() {
   return (
@@ -11,9 +13,7 @@ export default function DashboardUsers() {
           <DashboardSidebar />
         </div>
         <div className="col-8">
-          <a className="btn btn-success" href="/" target="_blank">
-            Tambah Data
-          </a>
+          {/* <AddUser /> */}
           <table
             id="example"
             className="table table-striped table-bordered"

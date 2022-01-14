@@ -15,6 +15,7 @@ import Leaderboard from "./pages/Leaderboard";
 import NotFound from "./pages/NotFound";
 import Homex from "./pages/Homex";
 import Tes from "./pages/Tes";
+import EditEvent from "./components/Form/EditEvent";
 
 export default function AppRoutes() {
   return (
@@ -30,6 +31,7 @@ export default function AppRoutes() {
       <Route exact path="/blog/:id" element={<BlogDetail />} />
       <Route exact path="/event" element={<Events />} />
       <Route exact path="/event/:id" element={<EventsDetail />} />
+      <Route exact path="/dashboard/editEvent/:id" element={<EditEvent />} />
       <Route
         exact
         path="/event/:id/leaderboard"
